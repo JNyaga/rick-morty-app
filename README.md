@@ -447,3 +447,45 @@ export default prisma
 if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma
 ```
 
+
+
+#### [Character Detail Page](src/app/[id]/page.tsx)
+
+> `src/app/[id]/page.tsx`
+
+The `CharacterDetail` page is responsible for displaying detailed information about a character. It utilizes Next.js for server-side rendering and Prisma for database operations.
+
+**Key Features:**
+
+- **Dynamic Content:** Displays dynamic content such as character name, species, status, gender, type, and more.
+- **Image Display:** Shows the character's image with Next.js' optimized `Image` component.
+- **Edit Description:** Allows users to edit the character description by clicking on the "Edit Description" button.
+- **Description:** Displays the character's description with an option to add one if not available.
+- **Episode List:** Lists the episodes the character appeared in, along with their names.
+
+![image-20240301224703831](./assets/README/image-20240301224703831.png)
+
+### Implementing Character edit page
+
+`npm install zod`- to be used in parse the data submitted by the edit form.
+
+- Added the `updateCharacterDescription` function in the [actions.ts](src/app/lib/utils/actions.ts) to be used in creating and adding notes on character.Since it a server action our form in the the edit page can utilize it.
+
+  
+
+#### [Description Editing Page](src/app/[id]/edit/page.tsx)
+
+> `src/app/[id]/edit/page.tsx`
+
+The `DescriptionForm` component is designed for updating the description of a character. It fetches the character's data using `fetchCharacterById` from the data fetchers module and uses Prisma for database operations.
+
+**Key Features:**
+
+- **Dynamic Content:** Displays the character's name in the description form for clarity.
+- **Data Fetching:** Retrieves the character's data from the database using `fetchCharacterById` and Prisma's `findUnique` method.
+- **Description Update:** Allows users to update the character's description using a form input field.
+
+![image-20240301224736117](./assets/README/image-20240301224736117.png)
+
+
+
