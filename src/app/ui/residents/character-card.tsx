@@ -5,11 +5,9 @@ import { Suspense } from "react";
 import { Resident } from "@/app/lib/utils/definitions";
 import { SkeletonCharacterCard } from "../skeletons";
 
-interface CharacterCardProps {
+const CharacterCard = ({ character }: {
     character: Resident;
-}
-
-const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
+}) => {
     const badgeRed = "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300";
 
     return (

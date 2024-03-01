@@ -4,11 +4,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useCallback } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-interface SearchBarProps {
-    placeholder: string;
-}
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
+const SearchBar = ({ placeholder }: {
+    placeholder: string;
+}) => {
     const searchParams = useSearchParams();
     const currentPathname = usePathname();
     const { replace, refresh } = useRouter();

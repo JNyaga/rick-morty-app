@@ -6,15 +6,23 @@ import Filters from "./ui/filter/filters";
 import CharacterCardList from "./ui/residents/character-card-list";
 import SearchBar from "./ui/search";
 
-export default async function Home(
-  searchParams: {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
     query?: string;
+    page?: string;
     location?: string;
     episode?: string;
     character?: string;
-  } = { query: '', location: '', episode: '', character: '' }
-) {
-  const { query, location, episode, character } = searchParams;
+  };
+}) {
+
+  const query = searchParams?.query || '';
+  const location = searchParams?.location || '';
+  const episode = searchParams?.episode || '';
+  const character = searchParams?.character || '';
+
   const residents = await getFilteredResidents({ search: query, location, episode, character });
 
   const characters = await fetchAllData(GET_ALL_CHARACTERS, 'characters')
