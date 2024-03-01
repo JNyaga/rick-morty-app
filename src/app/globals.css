@@ -31,3 +31,26 @@ body {
     text-wrap: balance;
   }
 }
+
+
+@layer base {
+
+  input[type="search"] {
+    @apply inline w-full rounded-md border border-gray-300 bg-white text-black py-2 pl-3 pr-3 leading-5 placeholder-gray-500 focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm;
+  }
+
+  button[type="submit"] {
+    @apply mt-3 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
+  }
+  
+  .detailcard {
+    @apply flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow h-1/2 md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700;
+  }
+
+  .btn-primary {
+    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800;
+  }
+  .btn-disabled {
+    @apply text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+  }
+}

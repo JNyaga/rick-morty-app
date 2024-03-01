@@ -254,7 +254,7 @@ export async function fetchResidentsWithFilters(page?: number, search?: string, 
 
 ## Displaying Location Data
 
-
+These changes ensure a more intuitive and engaging user experience.
 
 #### Changes
 
@@ -329,9 +329,29 @@ export async function getFilteredResidents({
 
 This code defines an asynchronous function named `getFilteredResidents` that fetches and filters resident data. It takes optional parameters to specify filtering criteria.
 
+**So far**
+
+![image-20240301185852748](./assets/README/image-20240301185852748.png)
 
 
 
+## Implementing Search and Filter Display
+
+- In [graphql_queries.ts](src/app/lib/data/graphql_queries.ts) appropriate queries for fetching all locations, episodes and characters were added. This will aid in getting the data that is to be displayed in the filters section.
+- In [data_fetchers.ts](src/app/lib/data/data_fetchers.ts) a function for fetching all data given a graphql query was added.
+
+##### [Search Component](src/app/ui/search.tsx)
+
+`npm i use-debounce` to delay the execution of the search function.
+
+- The component accepts a single prop `placeholder` of type string, which is used as the placeholder text in the search input field.
+- The interesting feature is that the `searchParams` in the `url` are used to hold the state of the search.
+
+- It uses several hooks from Next.js and React:
+  - `usePathname`, `useRouter`, and `useSearchParams` from Next.js to handle URL and navigation.
+  - `useCallback` from React to memoize the callback function for the search input field.
+  - `useDebouncedCallback` from the `use-debounce` package to delay the execution of the search function until 400 milliseconds have passed since the last invocation.
+- The `handleSearch` function updates the URL's search parameters based on the input value and triggers a navigation refresh.
 
 
 
