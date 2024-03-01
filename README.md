@@ -1,5 +1,13 @@
 # Rick And Morty App
 
+![image-20240302002310013](./assets/README/image-20240302002310013.png)
+
+The Rick and Morty Character App allows users to browse information and add notes about characters from the popular animated TV series. This web application was built using Next.js, TypeScript, and other modern web development tools and techniques.
+
+[TOC]
+
+Link to deployment https://rick-morty-app-one.vercel.app/
+
 ## Getting Started
 
 The project was first initialized with `npx create-next-app `
@@ -489,3 +497,36 @@ The `DescriptionForm` component is designed for updating the description of a ch
 
 
 
+## Preparing for deploy(Building and editing out some errors)
+
+To build the project the command used is:
+
+```bash
+npm run build
+```
+
+
+
+## Deploying to vercel
+
+- Pushed the code to github
+
+- For the database, I needed to install `vercel cli` , pull the vercel `.env` and  push my models using prisma to create the tables
+
+```bash
+$npm i -g vercel@latest
+$vercel link
+$vercel env pull .env
+$npx prisma db push
+$npx prisma studio# to view and inspect database
+```
+
+
+
+`
+
+# End
+
+In summary, this project demonstrates fetching data from a GraphQL API, implementing filtering and search functionality, displaying data through custom React components, adding dynamic pages, integrating a database, and deploying the final product. The end result is an intuitive web app that Rick and Morty fans can use to learn more about their favorite characters.
+
+This README was written by **JNyaga**
