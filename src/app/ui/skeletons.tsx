@@ -33,3 +33,19 @@ export function SkeletonCardList() {
         </div>
     )
 }
+
+export const FiltersSkeleton = () => {
+    return (
+        <div className="bg-white text-black p-4 rounded-lg shadow-sm">
+            <h3 className="text-2xl font-bold text-center mb-3">Filters</h3>
+            <div className="text-blue-500 cursor-pointer hover:underline text-center mb-3">
+                Loading...
+            </div>
+            <div className="accordion" id="accordionExample">
+                <div className="skeleton-accordion"></div>
+                <div className="skeleton-accordion"></div>
+                <div className="skeleton-accordion"></div>
+            </div>
+        </div>
+    );
+};
