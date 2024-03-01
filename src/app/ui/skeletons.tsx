@@ -49,3 +49,24 @@ export const FiltersSkeleton = () => {
         </div>
     );
 };
+
+
+
+export const CharacterSkeleton = () => {
+    return (
+        <div className='justify-center bg-gray-100 dark:bg-gray-900 py-10 min-h-screen'>
+            <div className='max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
+                <div className='md:flex'>
+                    <div className='md:flex-shrink-0'>
+                        <div className="h-48 w-full object-cover md:w-48 bg-gray-300" />
+                    </div>
+                    <div className='p-8'>
+                        <div className='uppercase tracking-wide text-sm bg-gray-300 mb-2 skeleton-width'></div>
+                        <div className='block mt-1 text-lg leading-tight font-medium text-black bg-gray-300 skeleton-width'></div>
+                        <div className='mt-2 text-gray-500 bg-gray-300 skeleton-height'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
