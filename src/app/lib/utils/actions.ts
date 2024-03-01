@@ -49,6 +49,6 @@ export async function updateCharacterDescription(formData: FormData) {
         update: data
     });
 
-    revalidatePath(`/rick/${databaseCharacter.id}/`);
-    redirect(`/rick/${databaseCharacter.id}/`);
+    revalidatePath(`/${databaseCharacter.id}/`);
+    redirect(`/${databaseCharacter.id}/`);
 }
