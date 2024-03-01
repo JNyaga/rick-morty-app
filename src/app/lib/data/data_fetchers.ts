@@ -1,7 +1,7 @@
 
 import { DocumentNode } from "graphql";
 import { getClient } from "./apollo_client";
-import { GET_LOCATIONS } from "./graphql_queries";
+import { GET_CHARACTER, GET_LOCATIONS } from "./graphql_queries";
 
 const client = getClient();
 
@@ -48,6 +48,22 @@ export async function fetchAllData(query: DocumentNode, dataKey: string) {
         return fetchedData;
     } catch (error) {
         console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+
+export async function fetchCharacterById(characterId: string) {
+    try {
+        const result = await client.query({
+            query: GET_CHARACTER,
+            variables: { characterId },
+            // fetchPolicy: 'no-cache',
+        });
+
+        return result.data.character;
+    } catch (error) {
+        console.error('Error fetching character:', error);
         throw error;
     }
 }

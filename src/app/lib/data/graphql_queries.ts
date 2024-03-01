@@ -72,3 +72,25 @@ query Locations($page: Int) {
         }
     }
 `
+
+
+export const GET_CHARACTER = gql`
+query Character($characterId: ID!) {
+        character(id: $characterId) {
+            name
+            created
+            gender
+            id
+            image
+            species
+            status
+            type
+            episode {
+                name
+            }
+            location {
+                name
+            }
+        }
+    }
+`

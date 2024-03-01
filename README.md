@@ -342,6 +342,8 @@ This code defines an asynchronous function named `getFilteredResidents` that fet
 
 ##### [Search Component](src/app/ui/search.tsx)
 
+>  `src/app/ui/search.tsx`
+
 `npm i use-debounce` to delay the execution of the search function.
 
 - The component accepts a single prop `placeholder` of type string, which is used as the placeholder text in the search input field.
@@ -353,5 +355,95 @@ This code defines an asynchronous function named `getFilteredResidents` that fet
   - `useDebouncedCallback` from the `use-debounce` package to delay the execution of the search function until 400 milliseconds have passed since the last invocation.
 - The `handleSearch` function updates the URL's search parameters based on the input value and triggers a navigation refresh.
 
+##### [Filter Component](src/app/ui/filter/filters.tsx)
 
+>  `src/app/ui/filter/filters.tsx`
+
+The component is designed to provide a filter functionality in a web application built with Next.js.
+
+Detailed Explanation:
+
+1. The component accepts three props: `locations`, `episodes`, and `characters`, each of which is an array of `AccordionItem` objects.
+2. It uses several hooks from Next.js: `usePathname`, `useRouter`, and `useSearchParams` to handle URL and navigation.
+3. The `clearFilters` function is defined to remove all filters from the URL search parameters. It creates a new `URLSearchParams` object from the current search parameters, removes each filter key if it exists, and then replaces the current URL with the updated search parameters.
+
+**So far**
+
+![image-20240301212940880](./assets/README/image-20240301212940880.png)
+
+
+
+## Resident Details and Notes Persistence
+
+Upon tapping on a resident, users will be directed to a screen displaying the resident's details. Here, they can access a form to add persistent notes about the character.
+
+### Implementing character detail page
+
+- Added a `graphql`  query `GET_CHARACTER`  in  [graphql_queries.ts](src/app/lib/data/graphql_queries.ts) to aid in fetching data of a single character
+- Added a function `fetchCharacterById` in [data_fetchers.ts](src/app/lib/data/data_fetchers.ts)  to fetch a single character data
+
+#### Configuring  Prisma for data storage
+
+- Installed `prisma` to manage the local Postgres database that stores the notes on character
+
+  ```bash
+  npm i prisma, @prisma/client
+  ```
+
+- Initialized prisma
+
+```bash
+npx prisma init #generates a .env file that one can configure database on
+```
+
+- Add model of database
+
+> [schema.prisma](prisma/schema.prisma) `prisma/schema.prisma`
+
+```sql
+model Character {
+  id          Int      @id
+  description String
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+```
+
+`id`: This is an integer field and is marked with the `@id` attribute, which means it's the primary key for the [`Character`] table. Each [`Character`] will have a unique `id`.
+
+`description`: This is a string field that likely holds a textual description of the character.
+
+`name`: This is also a string field, presumably holding the name of the character.
+
+`createdAt`: This is a `DateTime` field with a `@default(now())` attribute. This means that when a new [`Character`] is created if no value is provided for `createdAt`, it will default to the current timestamp.
+
+`updatedAt`: This is also a `DateTime` field, but it has the `@updatedAt` attribute. This means that Prisma will automatically update this field with the current timestamp whenever other fields in the same record are updated.
+
+- Perform migration to create tables
+
+```bash
+npx prisma migrate dev
+```
+
+- Configure `prisma client` [prisma/client](prisma/client.ts)
+
+```typescript
+import { PrismaClient } from '@prisma/client'
+
+const prismaClientSingleton = () => {
+return new PrismaClient()
+}
+
+declare global {
+var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+}
+
+const prisma = globalThis.prisma ?? prismaClientSingleton()
+
+export default prisma
+
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma
+```
 
