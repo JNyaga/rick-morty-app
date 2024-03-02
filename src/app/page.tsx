@@ -44,7 +44,10 @@ export default async function Home({
           </div>
 
           <div key={uuidv4()} className="w-full lg:col-span-8">
-            <CharacterCardList initialResidents={residents?.data || []} character={character} episode={episode} location={location} />
+            <CharacterCardList
+              initialResidents={residents?.data || []}
+              search={query}
+              character={character} episode={episode} location={location} />
           </div>
         </div>
       </div>
