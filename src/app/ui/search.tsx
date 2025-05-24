@@ -15,15 +15,14 @@ const SearchBar = ({ placeholder }: {
     const handleSearch = useDebouncedCallback(
         useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
             const searchTerm = event.target.value || null;
-            const params = new URLSearchParams(searchParams);
+            const params = new URLSearchParams(window.location.search);
             if (searchTerm) {
                 params.set('query', searchTerm);
             } else {
                 params.delete('query');
             }
             replace(`${currentPathname}?${params.toString()}`);
-            refresh();
-        }, [currentPathname, refresh, replace, searchParams]),
+        }, [currentPathname, replace]),
         400
     );
 

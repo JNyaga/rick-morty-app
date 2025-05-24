@@ -17,16 +17,15 @@ function FilterAccordion({ items, filterItem }: FilterAccordionProps) {
     const handleSelect = useCallback(
         (event: React.ChangeEvent<HTMLSelectElement>) => {
             const selectedValue = event.target.value || null;
-            const params = new URLSearchParams(searchParams);
+            const params = new URLSearchParams(window.location.search);
             if (selectedValue) {
                 params.set(filterItem, selectedValue);
             } else {
                 params.delete(filterItem);
             }
             replace(`${pathname}?${params.toString()}`);
-            refresh();
         },
-        [filterItem, pathname, refresh, replace, searchParams]
+        [filterItem, pathname, replace]
     );
 
     return (
