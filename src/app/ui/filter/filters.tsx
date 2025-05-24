@@ -18,7 +18,7 @@ export default function Filters({ locations, episodes, characters }: FilterProps
     // Function to clear all filters
     const clearFilters = () => {
         const filterKeys = ["location", "episode", "character"];
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(window.location.search);
 
         // Remove each filter from the URL search params
         filterKeys.forEach(key => {
