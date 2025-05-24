@@ -10,7 +10,7 @@ const nextConfig = {
         hostname: "rickandmortyapi.com",
       },
     ],
-    minimumCacheTTL: 1500000,
+    minimumCacheTTL: 60,
   },
 };
 
