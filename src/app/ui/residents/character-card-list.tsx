@@ -36,15 +36,8 @@ const CharacterCardList = ({ initialResidents, search, location, episode, charac
 
     return (
         <>
-            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-4 md:p-2 xl:p-5">
-                {residents?.map((resident: Resident) => (
-                    <Link key={resident.id} href={`/${resident.id}`}>
-                        <CharacterCard character={resident} />
-                    </Link>
-                ))}
-                {!residents && <p className="text-center">No Characters Found :/</p>}
-            </div>
-            {loading && (
+
+            {!!loading ? (
                 <div
                     ref={ref}
                     className='col-span-1 mt-16 flex items-center justify-center sm:col-span-2 md:col-span-3 lg:col-span-4'
@@ -67,7 +60,16 @@ const CharacterCardList = ({ initialResidents, search, location, episode, charac
                     </svg>
                     <span className='sr-only'>Loading...</span>
                 </div>
-            )}
+            ) :
+                <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-4 md:p-2 xl:p-5">
+                    {residents?.map((resident: Resident) => (
+                        <Link key={resident.id} href={`/${resident.id}`}>
+                            <CharacterCard character={resident} />
+                        </Link>
+                    ))}
+                    {!residents && <p className="text-center">No Characters Found :/</p>}
+                </div>
+            }
         </>
     );
 };
